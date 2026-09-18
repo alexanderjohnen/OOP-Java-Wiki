@@ -32,7 +32,8 @@ public class Main
                     | Terabyte (TB) | 10¹²                | Tebibyte (TiB) | 2⁴⁰              |
                     """;
 
-            System.err.println("Datei wurde nicht gefunden, Fallback wird genutzt:");
+            System.out.println("--------------------------------------------------");
+            System.out.println("\u001B[31m" + "Datei wurde nicht gefunden, Fallback wird genutzt:" + "\u001B[0m");
             System.out.println("--------------------------------------------------");
             System.out.println(fallback);
         }
