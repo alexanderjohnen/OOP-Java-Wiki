@@ -17,7 +17,7 @@ public class ReadFiles
                 return Files.readString(Path.of(path));
             } catch (IOException e)
             {
-                System.out.println(e.getMessage());
+                // System.out.println(e.getMessage());
             }
         }
 
