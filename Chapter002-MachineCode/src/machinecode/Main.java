@@ -1,41 +1,29 @@
 package machinecode;
 
-import paradigms.WikiParadigmsGui;
-import shared.ReadFiles;
-
-import javax.swing.*;
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-
-import static shared.ReadFiles.FALLBACK_ERROR_MESSAGE;
-
 public class Main
 {
     static void main()
     {
+        // Maschinensprache vs Programmiersprache
+        System.out.println("--------------------------------------------------");
+        System.out.println("Maschinensprache = Für Hardware verständlicher Code aus Nullen und Einsen. Jeder Prozessortyp hat einen eigenen Befehlssatz.");
+        System.out.println("Höhere Programmiersprache = Für Menschen lesbarer Code (z.B. Java). Ein Übersetzer wandelt ihn in Maschinensprache um.");
+        System.out.println();
 
-        String path1 = "C:\\Users\\Alexander\\Dokumente\\OOPJavaWiki\\Files\\Chapter002_MachineCode_HighLevelLanguages.md";
-        String path2 = "C:\\Users\\ajohnen\\82.FIAEQ1_Projekte\\OOP-Java-Wiki\\OOP-Java-Wiki-Dateien\\Chapter002_MachineCode_HighLevelLanguages.md";
-        String fallback = """
-                --------------------------------------------------
-                \u001B[31mDatei wurde nicht gefunden, Fallback wird genutzt:\u001B[0m
-                --------------------------------------------------
-                Maschinensprache = Für Hardware verständlicher Code bestehend aus Nullen und Einsen, mit je nach Prozessortyp unterschiedlichen Befehlssätzen.
-                
-                System Calls = Vom Betriebssystem bereitgestellte Dienste/Schnittstellen (z.B. "öffne eine Datei", "zeichne ein Fenster", etc.)
-                
-                JVM (Java Virtual Machine) = Übersetzt zur Laufzeit Bytecode in Maschinencode. Jede Betriebssystem + Prozessortyp Kombination hat eine eigene JVM-Version.
-                
-                Unterschied Prozess-VM zu System-VM:
-                System-VM (VMware, VirtualBox): Simuliert einen kompletten Computer, auf dem du ein komplett eigenes Betriebssystem installieren und laufen lassen kannst.
-                Prozess-VM (JVM): Simuliert nur so viel wie nötig, um ein einzelnes Programm (z.B. eine Java-Anwendung) auszuführen – sie stellt sich selbst als "virtuellen Prozessor" für den Bytecode dar, nutzt aber ganz normal das echte, darunterliegende Betriebssystem für alles andere (Dateien, Netzwerk, etc.).
-                """;
-        String[] pathArray = {path1, path2};
-        String machineCode = ReadFiles.readPath(pathArray, fallback);
-        boolean fallbackUsed = machineCode.equals(fallback);
+        // Plattformunabhängigkeit
+        System.out.println("Compiler (javac) = Übersetzt den Java-Code vor dem Start in Bytecode (.class-Datei).");
+        System.out.println("JVM (Java Virtual Machine) = Führt den Bytecode aus und übersetzt ihn zur Laufzeit in Maschinencode.");
+        System.out.println("Jede Kombination aus Betriebssystem und Prozessortyp braucht eine eigene JVM.");
+        System.out.println();
 
-        SwingUtilities.invokeLater(() -> new WikiParadigmsGui().show(machineCode, FALLBACK_ERROR_MESSAGE, fallbackUsed));
+        // System Calls
+        System.out.println("System Calls = Vom Betriebssystem bereitgestellte Dienste (z.B. \"öffne eine Datei\").");
+        System.out.println();
+
+        // VM-Typen
+        System.out.println("System-VM (z.B. VirtualBox) = Simuliert einen kompletten Computer.");
+        System.out.println("Prozess-VM (JVM) = Simuliert nur so viel, wie ein einzelnes Programm braucht.");
+        System.out.println("--------------------------------------------------");
     }
 
 }
