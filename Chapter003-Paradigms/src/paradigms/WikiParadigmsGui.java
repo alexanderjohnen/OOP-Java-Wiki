@@ -34,18 +34,8 @@ public class WikiParadigmsGui
             fallbackErrMsg.setForeground(Color.RED);
         }
 
-        JTextArea wikiTextArea = new JTextArea(wikiText);
-
-        // Wichtig: Zeilenumbruch aktivieren, damit der Text nicht horizontal herausragt
-        wikiTextArea.setLineWrap(true);
-        // Umbruch nur an Wortgrenzen, damit keine Wörter mitten drin getrennt werden
-        wikiTextArea.setWrapStyleWord(true);
-
-        // Textfeld sperren (Lese-Modus)
-        wikiTextArea.setEditable(false);
-
-        // TextArea in ein ScrollPane packen, um bei längeren Texten scrollen zu können
-        JScrollPane scrollPane = new JScrollPane(wikiTextArea);
+        // Eigene Klasse für ScrollPane ausgelagert
+        JScrollPane scrollPane = buildScrollPane(wikiText);
 
         // ScrollPane ins innere Panel einfügen
         innerPanel.add(scrollPane, BorderLayout.CENTER);
@@ -56,5 +46,23 @@ public class WikiParadigmsGui
         frame.setLocationRelativeTo(null);
         // Fenster anzeigen
         frame.setVisible(true);
+    }
+
+    private static JScrollPane buildScrollPane(String wikiText)
+    {
+        JTextArea wikiTextArea = new JTextArea(wikiText);
+
+        // Wichtig: Zeilenumbruch aktivieren, damit der Text nicht horizontal herausragt
+        wikiTextArea.setLineWrap(true);
+
+        // Umbruch nur an Wortgrenzen, damit keine Wörter mitten drin getrennt werden
+        wikiTextArea.setWrapStyleWord(true);
+
+        // Textfeld sperren (Lese-Modus)
+        wikiTextArea.setEditable(false);
+
+        // TextArea in ein ScrollPane packen, um bei längeren Texten scrollen zu können
+
+        return new JScrollPane(wikiTextArea);
     }
 }

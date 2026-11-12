@@ -1,10 +1,14 @@
 package machinecode;
 
+import paradigms.WikiParadigmsGui;
 import shared.ReadFiles;
 
+import javax.swing.*;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+
+import static shared.ReadFiles.FALLBACK_ERROR_MESSAGE;
 
 public class Main
 {
@@ -29,7 +33,9 @@ public class Main
                 """;
         String[] pathArray = {path1, path2};
         String machineCode = ReadFiles.readPath(pathArray, fallback);
-        System.out.print(machineCode);
+        boolean fallbackUsed = machineCode.equals(fallback);
+
+        SwingUtilities.invokeLater(() -> new WikiParadigmsGui().show(machineCode, FALLBACK_ERROR_MESSAGE, fallbackUsed));
     }
 
 }
